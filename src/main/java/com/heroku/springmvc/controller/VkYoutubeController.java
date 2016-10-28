@@ -2,8 +2,12 @@ package com.heroku.springmvc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
+
 import com.heroku.springmvc.model.Playlist;
 import com.heroku.springmvc.model.Song;
+import com.heroku.springmvc.service.Consumer;
+import com.heroku.springmvc.service.Producer;
 import com.heroku.springmvc.service.VKService;
 import com.heroku.springmvc.service.YouService;
 import org.springframework.context.annotation.Scope;
@@ -81,6 +85,22 @@ public class VkYoutubeController {
     public ModelAndView convert(@PathVariable("playlistname")String playlistname){
 
 
+        String playlistId = YouService.createPlaylistOnYoutube(playlistname);
+
+        try {
+            //Creating BlockingQueue of size 10
+            BlockingQueue<Song> queue = new ArrayBlockingQueue<>(10);
+            Producer producer = new Producer(queue, songs);
+            Consumer consumer = new Consumer(queue, playlistId);
+            //starting producer to produce messages in queue
+            new Thread(producer).start();
+            //starting consumer to consume messages from queue
+            new Thread(consumer).start();
+            System.out.println("Producer and Consumer has been started");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+/*
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -89,7 +109,7 @@ public class VkYoutubeController {
                 YouService.saveToPlaylist(playlistname, songs);
             }
         }).start();
-
+*/
 
         if (playlists == null) {
             playlists = new ArrayList<Playlist>();

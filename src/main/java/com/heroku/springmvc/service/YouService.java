@@ -110,7 +110,7 @@ public class YouService {
         return musicsFromVk;
     }
 
-    private static synchronized Song fetchHash(Song song) {
+    public static Song fetchHash(Song song) {
 
         String urlForSearchVideos = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&key=AIzaSyD-IXheXXARtFGi1F9iNqunRZWVC3-YP8o";
         String searchWorld = "&q=" + song.getArtist() + " " + song.getTitle();
@@ -159,7 +159,7 @@ public class YouService {
         }
     }
 
-    private static String createPlaylistOnYoutube(String playlistName) {
+    public static String createPlaylistOnYoutube(String playlistName) {
 
         String urlForCreatePlaylist = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&key=AIzaSyD-IXheXXARtFGi1F9iNqunRZWVC3-YP8o&access_token=" + accessTokenYoutube;
         HttpClient httpClient = new org.apache.http.impl.client.DefaultHttpClient(); //Use this instead
@@ -191,7 +191,7 @@ public class YouService {
 
     }
 
-    private static void saveToPlaylistSong(String playlistId, com.heroku.springmvc.model.Song song) {
+    public static void saveToPlaylistSong(String playlistId, com.heroku.springmvc.model.Song song) {
 
         String urlForPlaylistItemInsert = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=AIzaSyD-IXheXXARtFGi1F9iNqunRZWVC3-YP8o&access_token=" + accessTokenYoutube;
         HttpClient httpClient = new org.apache.http.impl.client.DefaultHttpClient(); //Use this instead

@@ -12,10 +12,6 @@
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-    <!-- JSROLL PANE -->
-<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.0.23/script/jquery.jscrollpane.min.js"></script>--%>
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.0.23/style/jquery.jscrollpane.min.css">--%>
-
     <link rel="stylesheet" href="<c:url value='/static/css/example.css'/>">
     <link rel="stylesheet" href="<c:url value='/static/lib/sweet-alert.css'/>">
     <link rel="script" href="<c:url value='/static/lib/sweet-alert.js'/>">
@@ -45,11 +41,6 @@
         }
     }
 </style>
-<script>
-    $(document).ready(function() {
-        $('.tablecontainer').jScrollPane();
-    });
-</script>
   <h3 id="title">Аудиозаписи вконтакте в плейлист на ютубе!</h3>
   <h3>1. Пройди аутентификацию на сервисах vkontakte и youtube</h3>
   <p>Нажми кнопку <strong>авторизации вконтакте</strong>, а затем <strong>авторизации на ютубе</strong>, чтобы позволить приложению получить необходимую информацию о аудиозаписях в VK и доступных плейлистах на ютубе</p>
