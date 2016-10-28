@@ -18,7 +18,7 @@
 </head>
 <body>
 <h2>Подтверди что ты не бот :)</h2>
-    <img src="${captcha_img}" alt="c">
+    <img src="${captcha_img}" style="height: 150px; width: auto" alt="c">
 
     <div style="margin-top: 0px; margin-bottom: 50px;"class="center-container">
         <p class="center"><b>Подсказка: </b> введите текст с картинки</p>
@@ -29,7 +29,7 @@
     String urlForAccessToken = "https://oauth.vk.com/access_token?client_id=5634355&client_secret=s1ZC77w7NO9FidFOEnRK&redirect_uri=http://floating-badlands-66714.herokuapp.com/redirectVk&code=" + code;
     -->
 
-    <a class="button" ng-href="<c:url value='/captcha'/>?sid=${captcha_sid}&key={{captcha}}">Отправить</a>
+    <a id="send_captcha" class="button" ng-href="<c:url value='/captcha'/>?sid=${captcha_sid}&key={{captcha}}">Отправить</a>
 <!--
     <a class="button" ng-href="http://floating-badlands-66714.herokuapp.com/redirectVk?code=e10111a9bf3b872c22 ????? ???? ???? ">use this captcha in request</a>
     <a class="button" ng-href="https://oauth.vk.com/authorize?client_id=5634355&scope=audio,offline&redirect_uri=http://floating-badlands-66714.herokuapp.com/redirectVk&display=page&response_type=code&v=5.53" class="btn btn-default">Authenticate Vk (when auth commpleted show user name)</a>
@@ -58,6 +58,15 @@ call my server with params and then invoker controller to continue request
 
 
 
+<script>
+    document.getElementById("captcha")
+            .addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode == 13) {
+                    document.getElementById("send_captcha").click();
+                }
+            });
+</script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
     <script src="<c:url value="/static/js/captcha.js"/>"></script>
     <script src="<c:url value="/static/js/controller/captchaController.js"/>"></script>

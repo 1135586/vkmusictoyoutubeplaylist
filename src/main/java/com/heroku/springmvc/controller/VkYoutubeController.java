@@ -88,34 +88,13 @@ public class VkYoutubeController {
         String playlistId = YouService.createPlaylistOnYoutube(playlistname);
 
         try {
-            //Creating BlockingQueue of size 10
             BlockingQueue<Song> queue = new ArrayBlockingQueue<>(10);
             Producer producer = new Producer(queue, songs);
             Consumer consumer = new Consumer(queue, playlistId);
-            //starting producer to produce messages in queue
             new Thread(producer).start();
-            //starting consumer to consume messages from queue
             new Thread(consumer).start();
-            System.out.println("Producer and Consumer has been started");
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-/*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<Song> songs = YouService.searchVideosOnYoutube(VkYoutubeController.this.songs);
-
-                YouService.saveToPlaylist(playlistname, songs);
-            }
-        }).start();
-*/
-
-        if (playlists == null) {
-            playlists = new ArrayList<Playlist>();
-        }
-        if (this.songs == null) {
-            this.songs = new ArrayList<Song>();
         }
 
         ModelAndView model = new ModelAndView();

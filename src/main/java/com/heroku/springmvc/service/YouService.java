@@ -169,7 +169,7 @@ public class YouService {
 
             StringEntity params = new StringEntity(" {\n" +
                     "            \"snippet\": {\n" +
-                    "            \"title\": \"" + playlistName + "\", \"description\": \"za 4to eto aaaaaa\"\n" +
+                    "            \"title\": \"" + playlistName + "\", \"description\": \"this playlist automatically created by http://test.handmug.ru/vkmusictoyoutubeplaylist/ \"\n" +
                     "}}");
 
             request.setHeader("Content-type", "application/json");
